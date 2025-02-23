@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { TextField, Button, Box } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contactsSlice";
-import css from "./ContactsForm.module.css";
 
 const ContactsForm = () => {
   const [name, setName] = useState("");
@@ -10,32 +10,29 @@ const ContactsForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const contact = { id: Date.now().toString(), name, phone };
-    dispatch(addContact(contact));
+    dispatch(addContact({ name, phone }));
     setName("");
     setPhone("");
   };
 
   return (
-    <form onSubmit={handleSubmit} className={css.form}>
-      <input
-        type="text"
+    <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+      <TextField
+        label="Ім'я"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        placeholder="Name"
-        className={css.input}
+        required
       />
-      <input
-        type="text"
+      <TextField
+        label="Номер телефону"
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
-        placeholder="Phone"
-        className={css.input}
+        required
       />
-      <button type="submit" className={css.button}>
+      <Button variant="contained" color="primary" type="submit">
         Додати контакт
-      </button>
-    </form>
+      </Button>
+    </Box>
   );
 };
 
