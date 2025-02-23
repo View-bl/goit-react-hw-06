@@ -14,7 +14,7 @@ const ContactList = () => {
     : contacts;
 
   const handleDelete = (id) => {
-    dispatch(deleteContact(id)); // передаємо id для видалення конкретного контакту
+    dispatch(deleteContact(id)); 
   };
 
   return (
@@ -23,7 +23,7 @@ const ContactList = () => {
         <li key={contact.id} className={css.contactItem}>
           <span>{contact.name}: {contact.phone}</span>
           <button
-            onClick={() => handleDelete(contact.id)} // передаємо id при натисканні на кнопку
+            onClick={() => handleDelete(contact.id)} 
             className={css.deleteBtn}
           >
             Видалити
